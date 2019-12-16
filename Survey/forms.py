@@ -1,5 +1,6 @@
 from django import forms
 
+
 class ObjectDataForm(forms.Form):
     object_size = forms.ChoiceField()
     district = forms.ChoiceField()
@@ -12,8 +13,10 @@ class ObjectDataForm(forms.Form):
     landform = forms.ChoiceField()
     neighboring_buildings = forms.ChoiceField()
 
+
 class ObjectTypeForm(forms.Form):
     object_type = forms.ChoiceField()
+
 
 class ServiceObjectForm(forms.Form):
     service_type = forms.ChoiceField()

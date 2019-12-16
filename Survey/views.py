@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ObjectDataForm, ObjectTypeForm, ServiceObjectForm, PrivateObjectForm
+from .forms import ObjectDataForm, ObjectTypeForm, ServiceObjectForm, PrivateObjectForm, PublicObjectForm
 
 def object_data(request):
     form = ObjectDataForm(request.POST)
@@ -44,8 +44,20 @@ def private_object(request):
     form = PrivateObjectForm(request.POST)
     if form.is_valid():
         form.save()
-        service_type = form.cleaned_data.get('service_type')
+        total_private_building_value = form.cleaned_data.get('total_private_building_value')
         return redirect('other_services')
     else:
         form = PrivateObjectForm()
     return render(request, 'private_object.html', {'form': form})
+
+def public_object(request):
+    form = PublicObjectForm(request.POST)
+    if form.is_valid():
+        form.save()
+        visitors_per_hour = form.cleaned_data.get('visitors_per_hour')
+        return redirect('other_services')
+    else:
+        form = PublicObjectForm()
+    return render(request, 'public_object.html', {'form': form})
+
+
