@@ -13,22 +13,24 @@ class ObjectData(models.Model):
     neighboring_buildings = models.CharField()
 
 class ObjectType(models.Model): 
+    object_type = models.CharField()
     service_building = models.BooleanField()
-    
-    trade_services = models.BooleanField()
+
+class ServiceObject(models.Model):
+    service_type = models.CharField()
+    # Trade
     total_products_value = models.DecimalField()
     products_amount = models.IntegerField()
-    
-    banking_services = models.BooleanField() 
+    # Banking
     large_safe = models.BooleanField()
     small_safe = models.BooleanField()
-    
-    other_services = models.BooleanField()
+    # Other    
     total_service_building_value = models.DecimalField()
 
-    private_building = models.BooleanField()
+
+class PrivateObject(models.Model):
     total_private_building_value = models.DecimalField()
 
-# thats good
-    public_building = models.BooleanField()
+
+class PublicObject(models.Model):
     visitors_per_hour = models.IntegerField()
