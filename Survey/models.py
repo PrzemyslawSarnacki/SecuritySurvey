@@ -29,5 +29,6 @@ class ObjectType(models.Model):
     private_building = models.BooleanField()
     total_private_building_value = models.DecimalField()
 
+# thats good
     public_building = models.BooleanField()
     visitors_per_hour = models.IntegerField()
