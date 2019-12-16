@@ -12,7 +12,7 @@ class ObjectData(models.Model):
     landform = models.CharField()
     neighboring_buildings = models.CharField()
 
-class ObjectType(models.Model):
+class ObjectType(models.Model): 
     service_building = models.BooleanField()
     
     trade_services = models.BooleanField()
