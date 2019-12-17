@@ -1,0 +1,10 @@
+{% extends 'Survey/base.html' %}
+
+{% block content %}
+<form method="POST" action="">
+    <p>Oto wyniki:</p>
+    <p>Dziękujemy za skorzystanie z aplikacji</p>
+    {% csrf_token %}
+    <button type="submit" name="submit">Return</button>
+</form>
+{% endblock %}

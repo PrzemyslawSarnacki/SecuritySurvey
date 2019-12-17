@@ -1,38 +1,87 @@
 from django import forms
+from .models import ObjectData, ObjectType, PrivateObject, PublicObject, ServiceObject, ServiceType
 
 
-class ObjectDataForm(forms.Form):
-    object_size = forms.ChoiceField()
-    district = forms.ChoiceField()
-    traffic_day = forms.ChoiceField()
-    traffic_night = forms.ChoiceField()
-    distance_from_the_street = forms.ChoiceField()
-    cctv = forms.BooleanField()
-    locals_night = forms.BooleanField()
-    fence = forms.ChoiceField()
-    landform = forms.ChoiceField()
-    neighboring_buildings = forms.ChoiceField()
+class ObjectDataForm(forms.ModelForm):
+
+    class Meta:
+        model = ObjectData
+        fields = (
+            'object_size',
+            'district',
+            'traffic_day',
+            'traffic_night',
+            'distance_from_the_street',
+            'cctv',
+            'locals_night',
+            'fence',
+            'landform',
+            'neighboring_buildings',
+        )
+        labels = {
+            'object_size': 'Rozmiar',
+            'district': 'Dzielnica',
+            'traffic_day': 'Ruch w dzień',
+            'traffic_night': 'Ruch w nocy',
+            'distance_from_the_street': 'Odległość od ulicy',
+            'cctv': 'Monitoring',
+            'locals_night': 'Lokale otwarte w nocy w sąsiedztwie',
+            'fence': 'Ogrodzenie',
+            'landform': 'Ukształtowanie terenu',
+            'neighboring_buildings': 'Sąsiednie budynki',
+        }
 
 
 class ObjectTypeForm(forms.Form):
-    object_type = forms.ChoiceField()
+
+    class Meta:
+        model = ObjectType
+        fields = ('object_type',)
+        labels = {'object_type': 'Typ obiektu', }
 
 
-class ServiceObjectForm(forms.Form):
-    service_type = forms.ChoiceField()
-    # Trade
-    total_products_value = forms.DecimalField()
-    products_amount = forms.IntegerField()
-    # Banking
-    large_safe = forms.BooleanField()
-    small_safe = forms.BooleanField()
-    # Other
-    total_service_building_value = forms.DecimalField()
+class BankingForm(forms.ModelForm):
+    
+    class Meta:
+        model = ServiceObject
+        fields = ('safe_size',)
+        labels = {'safe_size': 'Rozmiar sejfu', }
+
+class TradeForm(forms.ModelForm):
+    
+    class Meta:
+        model = ServiceObject
+        fields = ('total_products_value', 'products_amount')
+        labels = {'total_products_value': 'Całkowita wartość produktów',
+                'products_amount': 'Ilość produktów' 
+                }
+
+
+class OtherForm(forms.ModelForm):
+    class Meta:
+        model = ServiceObject
+        fields = ('total_service_building_value', )
+        labels = {'total_service_building_value': 'Całkowita wartość budynku',}
+
+class ServiceObjectForm(forms.ModelForm):
+
+    class Meta:
+        model = ServiceType
+        fields = ('service_type',)
+        labels = {'service_type': 'Typ serwisu', }
 
 
 class PrivateObjectForm(forms.ModelForm):
-    total_private_building_value = forms.DecimalField()
+
+    class Meta:
+        model = PrivateObject
+        fields = ('total_private_building_value',)
+        labels = {'total_private_building_value': 'Całkowita cena obiektu', }
 
 
 class PublicObjectForm(forms.ModelForm):
-    visitors_per_hour = forms.IntegerField()
+
+    class Meta:
+        model = PublicObject
+        fields = ('visitors_per_hour',)
+        labels = {'visitors_per_hour': 'Ilość odwiedzających na godzinę', }
