@@ -22,7 +22,7 @@ def object_type(request):
     if request.method == 'POST':
         if form.is_valid():
             object_type = form.cleaned_data.get('object_type')
-            label = form.save(commit=False)
+            label = form.save()
             if object_type == 'Obiekt usługowy':
                 return redirect('service_object')
             elif object_type == 'Obiekt prywatny':
@@ -38,7 +38,7 @@ def service_object(request):
     context = {'form': form}
     if form.is_valid():
         service_type = form.cleaned_data.get('service_type')
-        form.save(commit=False)
+        form.save()
         if request.POST['service_type'] == 'Trade':
             detail_form = TradeForm(request.POST)
         elif request.POST['service_type'] == 'Banking':
@@ -46,7 +46,7 @@ def service_object(request):
         elif request.POST['service_type'] == 'Other':
             detail_form = OtherForm(request.POST)
         context['detail_form'] = detail_form
-    elif 'finish' in request.GET:
+    elif 'finish' in request.POST:
         return redirect('results')
     else:
         form = ServiceTypeForm()

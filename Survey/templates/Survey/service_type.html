@@ -6,9 +6,11 @@
     {{form.as_p}}
     <button type="submit" name="submit">Submit</button>
 </form>
-<form method="GET" action="">
+<form method="POST" action="">
     {% csrf_token %}
     {{detail_form.as_p}}
+    {% if detail_form.as_p  %}
     <button type="submit" name="finish">Finish</button>
+    {% endif %}
 </form>
 {% endblock %}
