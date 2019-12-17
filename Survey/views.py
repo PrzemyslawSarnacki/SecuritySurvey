@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ObjectDataForm, ObjectTypeForm, ServiceObjectForm, PrivateObjectForm, PublicObjectForm
+from .forms import ObjectDataForm, ObjectTypeForm, ServiceObjectForm, PrivateObjectForm, PublicObjectForm, TradeForm, BankingForm, OtherForm
 from django.views.decorators.csrf import csrf_protect
 
 
