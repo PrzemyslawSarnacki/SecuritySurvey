@@ -28,7 +28,12 @@ class ObjectData(models.Model):
     neighboring_buildings = models.CharField(max_length=255)
 
 class ObjectType(models.Model): 
-    object_type = models.CharField(max_length=255)
+    OBJECT_TYPE = (
+             ('Obiekt usługowy','Obiekt usługowy'),
+             ('Obiekt prywatny','Obiekt prywatny'),
+             ('Obiekt publiczny','Obiekt publiczny'),
+    )
+    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
 
 class ServiceObject(models.Model):
     SAFE_SIZES = (
@@ -39,7 +44,7 @@ class ServiceObject(models.Model):
     total_products_value = models.DecimalField(decimal_places=2, max_digits=2)
     products_amount = models.IntegerField()
     # Banking
-    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES)
+    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, default=0)
     # Other    
     total_service_building_value = models.DecimalField(decimal_places=2, max_digits=2)
 

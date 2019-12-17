@@ -32,7 +32,7 @@ class ObjectDataForm(forms.ModelForm):
         }
 
 
-class ObjectTypeForm(forms.Form):
+class ObjectTypeForm(forms.ModelForm):
 
     class Meta:
         model = ObjectType
@@ -63,7 +63,7 @@ class OtherForm(forms.ModelForm):
         fields = ('total_service_building_value', )
         labels = {'total_service_building_value': 'Całkowita wartość budynku',}
 
-class ServiceObjectForm(forms.ModelForm):
+class ServiceTypeForm(forms.ModelForm):
 
     class Meta:
         model = ServiceType

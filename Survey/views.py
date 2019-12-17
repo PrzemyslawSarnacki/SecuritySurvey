@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ObjectDataForm, ObjectTypeForm, ServiceObjectForm, PrivateObjectForm, PublicObjectForm, TradeForm, BankingForm, OtherForm
+from .forms import ObjectDataForm, ObjectTypeForm, ServiceTypeForm, PrivateObjectForm, PublicObjectForm, TradeForm, BankingForm, OtherForm
 from django.views.decorators.csrf import csrf_protect
 
 
@@ -19,33 +19,38 @@ def object_data(request):
 
 def object_type(request):
     form = ObjectTypeForm(request.POST)
-    if form.is_valid():
-        form.save()
-        object_type = form.cleaned_data.get('object_type')
-        if object_type == 'Obiekt usługowy':
-            return redirect('service_object')
-        elif object_type == 'Obiekt prywatny':
-            return redirect('private_object')
-        elif object_type == 'Obiekt publiczny':
-            return redirect('public_object')
-    else:
-        form = ObjectTypeForm()
+    if request.method == 'POST':
+        if form.is_valid():
+            object_type = form.cleaned_data.get('object_type')
+            label = form.save(commit=False)
+            if object_type == 'Obiekt usługowy':
+                return redirect('service_object')
+            elif object_type == 'Obiekt prywatny':
+                return redirect('private_object')
+            elif object_type == 'Obiekt publiczny':
+                return redirect('public_object')
+        else:
+            form = ObjectTypeForm()
     return render(request, 'Survey/object_type.html', {'form': form})
 
 def service_object(request):
-    form = ServiceObjectForm(request.POST)
+    form = ServiceTypeForm(request.POST)
+    context = {'form': form}
     if form.is_valid():
-        form.save()
         service_type = form.cleaned_data.get('service_type')
+        form.save(commit=False)
         if request.POST['service_type'] == 'Trade':
             detail_form = TradeForm(request.POST)
-        if request.POST['service_type'] == 'Banking':
+        elif request.POST['service_type'] == 'Banking':
             detail_form = BankingForm(request.POST)
-        if request.POST['service_type'] == 'Other':
+        elif request.POST['service_type'] == 'Other':
             detail_form = OtherForm(request.POST)
+        context['detail_form'] = detail_form
+    elif 'finish' in request.GET:
+        return redirect('results')
     else:
-        form = ServiceObjectForm()
-    return render(request, 'Survey/service_type.html', {'form': form, 'detail_form': detail_form})
+        form = ServiceTypeForm()
+    return render(request, 'Survey/service_type.html', context=context)
 
 def private_object(request):
     form = PrivateObjectForm(request.POST)
