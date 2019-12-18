@@ -2,10 +2,11 @@ from django.db import models
 
 class ObjectData(models.Model):
     SIZES = (
-        ('parterowy','parterowy'),
+        ('1','parterowy'),
+        ('2','parterowy'),
         )
     DISTRICTS = (
-        ('Bemowo','Bemowo'),
+        ('1','Bemowo'),
         )
     TRAFFIC_DAY = (
         ('1','0-5 aut/min'),
@@ -43,8 +44,8 @@ class ObjectType(models.Model):
              ('Obiekt prywatny','Obiekt prywatny'),
              ('Obiekt publiczny','Obiekt publiczny'),
     )
-    # object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
-    object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
+    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
+    # object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
 
 class ServiceObject(models.Model):
     SAFE_SIZES = (
@@ -56,7 +57,7 @@ class ServiceObject(models.Model):
     products_amount = models.IntegerField()
     # Banking
     safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, default=0)
-    # Other    
+    # Other
     total_service_building_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
 
 
