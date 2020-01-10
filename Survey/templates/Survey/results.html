@@ -2,9 +2,17 @@
 
 {% block content %}
 <form method="POST" action="">
-    <p>Oto wyniki:</p>
-    <p>Dziękujemy za skorzystanie z aplikacji</p>
-    {% csrf_token %}
-    <button type="submit" name="submit">Return</button>
+    <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
+        <div class='container'>
+            <div class='row'>
+                <div class='text-center col-sm-12'>
+                    <p>Oto wyniki:</p>
+                    <p>Dziękujemy za skorzystanie z aplikacji</p>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-dark btn-block">Dziękujemy</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

@@ -1,9 +1,20 @@
 {% extends 'Survey/base.html' %}
 
 {% block content %}
+
 <form method="POST" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" name="submit">Submit</button>
+        <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='text-center col-sm-12'>
+                                <br><h1 style="font-family: 'Times New Roman', Times, serif;">Prosimy o podanie wszystkich danych obiektu</h1>
+                                <br>
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <br><button type="submit" class="btn btn-dark btn-block">Przejdź do następnego etapu</button>
+                        </div>
+                </div>
+        </div>
+</div>
 </form>
 {% endblock %}

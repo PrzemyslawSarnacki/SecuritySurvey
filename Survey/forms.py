@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import ObjectData, ObjectType, PrivateObject, PublicObject, ServiceObject, ServiceType
 
 
@@ -13,22 +14,22 @@ class ObjectDataForm(forms.ModelForm):
             'traffic_night',
             'distance_from_the_street',
             'cctv',
+            'neighboring_buildings',
             'locals_night',
             'fence',
             'landform',
-            'neighboring_buildings',
         )
         labels = {
-            'object_size': 'Rozmiar',
+            'object_size': 'Wielkość obiektu',
             'district': 'Dzielnica',
-            'traffic_day': 'Ruch w dzień',
-            'traffic_night': 'Ruch w nocy',
-            'distance_from_the_street': 'Odległość od ulicy',
-            'cctv': 'Monitoring',
-            'locals_night': 'Lokale otwarte w nocy w sąsiedztwie',
-            'fence': 'Ogrodzenie',
-            'landform': 'Ukształtowanie terenu',
+            'traffic_day': 'Natęrzenie ruchu w dzień',
+            'traffic_night': 'Natęrzenie ruch w nocy',
+            'distance_from_the_street': 'Odległość obiektu od ulicy',
+            'cctv': 'Czy monitoring uliczny obejmuje obiekt?',
             'neighboring_buildings': 'Sąsiednie budynki',
+            'locals_night': 'Czy znajdują się lokale otwarte w nocy w sąsiadującej okolicy?',
+            'fence': 'Rodzaj ogrodzenia',
+            'landform': 'Ukształtowanie terenu',
         }
 
 
