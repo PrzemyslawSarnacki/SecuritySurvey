@@ -77,46 +77,40 @@ class ObjectData(models.Model):
     neighboring_buildings = models.CharField(max_length=255, choices=NEIGHBORING_BUILDINGS)
 
 
-class ObjectType(models.Model): 
-    OBJECT_TYPE = (
-             ('Obiekt usługowy','Obiekt usługowy'),
-             ('Obiekt prywatny','Obiekt prywatny'),
-             ('Obiekt publiczny','Obiekt publiczny'),
-    )
-    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
-    # object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
-
 class ServiceObject(models.Model):
     SAFE_SIZES = (
         ('0','Mały sejf'),
         ('1','Duży sejf'),
         )
+    
     # Trade
-    total_products_value = models.DecimalField(decimal_places=2, max_digits=10)
+    total_products_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
     products_amount = models.IntegerField()
     # Banking
-    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, default=0)
+    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, default=0, null=True, blank=True)
     # Other
     total_service_building_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
+    # Private
+    total_private_building_value = models.DecimalField(decimal_places=2, max_digits=2, null=True, blank=True)
+    # Public 
+    visitors_per_hour = models.IntegerField(null=True, blank=True)
 
+    object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
 
 class ServiceType(models.Model): 
     SERVICE_TYPES = (
-        ('Trade','Usługi Handlowe'),
-        ('Banking','Usługi Bankowe'),
-        ('Other','Inne Usługi'),
+        ('0','Usługi Handlowe'),
+        ('1','Usługi Bankowe'),
+        ('2','Inne Usługi'),
         )
-    service_type = models.CharField(max_length=255, choices=SERVICE_TYPES)
+    service_type = models.CharField(max_length=255, choices=SERVICE_TYPES, null=True, blank=True)
     service_object = models.ForeignKey(ServiceObject, on_delete=models.CASCADE)
-    # object_type = models.ForeignKey(ObjectType, on_delete=models.CASCADE)
 
-
-class PrivateObject(models.Model):
-    # object_type = models.ForeignKey(ObjectType, on_delete=models.CASCADE)
-    total_private_building_value = models.DecimalField(decimal_places=2, max_digits=2)
-
-
-class PublicObject(models.Model):
-    # object_type = models.ForeignKey(ObjectType, on_delete=models.CASCADE)
-    visitors_per_hour = models.IntegerField()
-
+class ObjectType(models.Model): 
+    OBJECT_TYPE = (
+             ('0','Obiekt usługowy'),
+             ('1','Obiekt prywatny'),
+             ('2','Obiekt publiczny'),
+    )
+    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
+    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)

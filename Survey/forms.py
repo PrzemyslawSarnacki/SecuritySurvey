@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import ObjectData, ObjectType, PrivateObject, PublicObject, ServiceObject, ServiceType
+from .models import ObjectData, ServiceObject, ServiceType, ObjectType
 
 
 class ObjectDataForm(forms.ModelForm):
@@ -75,7 +75,7 @@ class ServiceTypeForm(forms.ModelForm):
 class PrivateObjectForm(forms.ModelForm):
 
     class Meta:
-        model = PrivateObject
+        model = ServiceObject
         fields = ('total_private_building_value',)
         labels = {'total_private_building_value': 'Całkowita cena obiektu', }
 
@@ -83,6 +83,6 @@ class PrivateObjectForm(forms.ModelForm):
 class PublicObjectForm(forms.ModelForm):
 
     class Meta:
-        model = PublicObject
+        model = ServiceObject
         fields = ('visitors_per_hour',)
         labels = {'visitors_per_hour': 'Ilość odwiedzających na godzinę', }

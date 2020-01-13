@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import ObjectDataForm, ObjectTypeForm, ServiceTypeForm, PrivateObjectForm, PublicObjectForm, TradeForm, BankingForm, OtherForm
+from .models import ObjectData, ObjectType, ServiceType, ServiceObject
 from django.views.decorators.csrf import csrf_protect
 
 
 def home(request):
     if request.method == 'POST':
-        return redirect('object_data')
+        return redirect('object_type')
     return render(request, 'Survey/home.html', {})
 
 def object_data(request):
@@ -18,20 +19,79 @@ def object_data(request):
     return render(request, 'Survey/object_data.html', {'form': form})
 
 def object_type(request):
-    form = ObjectTypeForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            object_type = form.cleaned_data.get('object_type')
-            label = form.save()
-            if object_type == 'Obiekt usługowy':
-                return redirect('service_object')
-            elif object_type == 'Obiekt prywatny':
-                return redirect('private_object')
-            elif object_type == 'Obiekt publiczny':
-                return redirect('public_object')
-        else:
-            form = ObjectTypeForm()
-    return render(request, 'Survey/object_type.html', {'form': form})
+    context = {}
+
+    object_data = ObjectData.objects.last()
+    if object_data == None:
+        object_data = ObjectData.objects.create()
+   
+    service_object = ServiceObject.objects.last()
+    if service_object == None:
+        service_object = ServiceObject.objects.create(object_data=object_data)
+   
+    service_type = ServiceType.objects.last()
+    if service_type == None:
+        service_type = ServiceType.objects.create(service_object=service_object)
+
+    object_type = ObjectType.objects.last()
+    if object_type == None:
+        object_type = ObjectType.objects.create(service_type=service_type)
+
+    print('debug')
+
+    if 'object_type' in request.POST.keys():
+        print('debug1')
+        object_type.object_type = request.POST['object_type']
+        object_type.save()
+        if request.POST['object_type'] == '0':
+            print('debug11')
+            service_type_form = ServiceTypeForm(request.POST, instance=service_type)
+            if 'service_type' in request.POST.keys():
+                if request.POST['service_type'] == '0':
+                    print('debug111')
+                    service_object_form = TradeForm(request.POST, instance=service_object)
+                elif request.POST['service_type'] == '1':
+                    print('debug112')
+                    service_object_form = BankingForm(request.POST, instance=service_object)
+                elif request.POST['service_type'] == '2':
+                    print('debug113')
+                    service_object_form = OtherForm(request.POST, instance=service_object)
+                context['service_object_form'] = service_object_form
+                if 'service_object' in request.POST.keys():
+                    object_data_form = ObjectDataForm(request.POST, instance=object_data)
+                    context['object_data_form'] = object_data_form
+        elif request.POST['object_type'] == '1':
+            service_type_form = PrivateObjectForm(request.POST, instance=service_type)
+            print('debug12')
+            if 'service_type' in request.POST.keys():
+                object_data_form = ObjectDataForm(request.POST, instance=service_type)
+
+        elif request.POST['object_type'] == '2':
+            print('debug13')
+            service_type_form = PublicObjectForm(request.POST, instance=service_type)
+        context['service_type_form'] = service_type_form
+    else:
+        print('debug2')
+        recipe = object_type.object_type
+        print('debug3')
+        if recipe == '0':
+            print('debug4')
+            service_type_form = ServiceTypeForm(request.POST, instance=service_type)
+        elif recipe == '1':
+            print('debug5')
+            service_type_form = PrivateObjectForm(request.POST, instance=service_type)
+        elif recipe == '2':
+            print('debug6')
+            service_type_form = PublicObjectForm(request.POST, instance=service_type)
+            print('debug7')
+        print('debug8')
+        srv = service_type_form.save(commit=False)
+ 
+    # context['object_data_form'] = object_data_form
+    # context['service_object_form'] = service_object_form
+    context['service_type_form'] = service_type_form
+    context['object_type'] = ObjectTypeForm(request.POST or None)
+    return render(request, 'Survey/object_type.html', context)
 
 def service_object(request):
     form = ServiceTypeForm(request.POST)

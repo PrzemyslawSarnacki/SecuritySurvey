@@ -1,17 +1,79 @@
 {% extends 'Survey/base.html' %}
+{% block dynamic_active %}active{% endblock %}
+{% load widget_tweaks %}
+
 
 {% block content %}
-<form method="POST" action="">
-    <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
-        <div class='container'>
-            <div class='row'>
-                <div class='text-center col-sm-12'>
-                    {% csrf_token %}
-                    {{form.as_table}}
-                    <button type="submit" class="btn btn-dark btn-block">Przejdź do następnego etapu</button>
-                </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="page-header">
+      <h2>Typ obiektu</h2>
+      <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
+        {% csrf_token %}
+        {% for field in object_type %}
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field|add_class:'form-control' }}
+          </div>
+        </div>
+        {% endfor %}
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <div class="btn-group btn-group-justified" role="group">
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary" type="submit">Wybierz</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <h3>Typ serwisu</h3>
+    <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
+        {% csrf_token %}
+        {% for field in service_type_form %}
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control' }}
+            </div>
+      </div>
+      {% endfor %}
+      <br>
+      <div class="form-group row">
+        <div class="col-sm-6">
+            <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" type="submit">Wybierz</button>
             </div>
         </div>
     </div>
+</div>
 </form>
+    <h3>Dane o obiekcie</h3>
+    <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
+        {% csrf_token %}
+        {% for field in object_data_form %}
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control' }}
+            </div>
+      </div>
+      {% endfor %}
+      <br>
+      <div class="form-group row">
+        <div class="col-sm-6">
+            <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" type="submit">Wybierz</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+</div>
 {% endblock %}
