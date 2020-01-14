@@ -1,4 +1,5 @@
 {% extends 'Survey/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
                                 <br><h1 style="font-family: 'Times New Roman', Times, serif;">Prosimy o podanie wszystkich danych obiektu</h1>
                                 <br>
                                 {% csrf_token %}
-                                {{form.as_p}}
+                                {{form|crispy}}
                                 <br><button type="submit" class="btn btn-dark btn-block">Przejdź do następnego etapu</button>
                         </div>
                 </div>
