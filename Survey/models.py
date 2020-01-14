@@ -85,9 +85,9 @@ class ServiceObject(models.Model):
     
     # Trade
     total_products_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
-    products_amount = models.IntegerField()
+    products_amount = models.IntegerField(null=True, blank=True)
     # Banking
-    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, default=0, null=True, blank=True)
+    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, null=True, blank=True)
     # Other
     total_service_building_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
     # Private
@@ -97,20 +97,14 @@ class ServiceObject(models.Model):
 
     object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
 
-class ServiceType(models.Model): 
-    SERVICE_TYPES = (
-        ('0','Usługi Handlowe'),
-        ('1','Usługi Bankowe'),
-        ('2','Inne Usługi'),
-        )
-    service_type = models.CharField(max_length=255, choices=SERVICE_TYPES, null=True, blank=True)
-    service_object = models.ForeignKey(ServiceObject, on_delete=models.CASCADE)
 
 class ObjectType(models.Model): 
     OBJECT_TYPE = (
-             ('0','Obiekt usługowy'),
-             ('1','Obiekt prywatny'),
-             ('2','Obiekt publiczny'),
+             ('0','Obiekt usług handlowych'),
+             ('1','Obiekt usług bankowych'),
+             ('2','Obiekt usług innych'),
+             ('3','Obiekt prywatny'),
+             ('4','Obiekt publiczny'),
     )
-    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, null=True, blank=True)
-    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
+    object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, default='0')
+    service_object = models.ForeignKey(ServiceObject, on_delete=models.CASCADE)

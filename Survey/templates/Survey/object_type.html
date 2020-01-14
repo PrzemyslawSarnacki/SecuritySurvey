@@ -10,7 +10,7 @@
       <h2>Typ obiektu</h2>
       <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
         {% csrf_token %}
-        {% for field in object_type %}
+        {% for field in object_type_form %}
         <div class="form-group row">
           <div class="col-sm-6">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -33,7 +33,7 @@
     <h3>Typ serwisu</h3>
     <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
         {% csrf_token %}
-        {% for field in service_type_form %}
+        {% for field in service_object_form %}
         <div class="form-group row">
             <div class="col-sm-6">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -46,29 +46,7 @@
         <div class="col-sm-6">
             <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
-                <button class="btn btn-primary" type="submit">Wybierz</button>
-            </div>
-        </div>
-    </div>
-</div>
-</form>
-    <h3>Dane o obiekcie</h3>
-    <form action="{% url 'object_type' %}" class="form-hotizontal" method="POST">
-        {% csrf_token %}
-        {% for field in object_data_form %}
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field|add_class:'form-control' }}
-            </div>
-      </div>
-      {% endfor %}
-      <br>
-      <div class="form-group row">
-        <div class="col-sm-6">
-            <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group" role="group">
-                <button class="btn btn-primary" type="submit">Wybierz</button>
+                <button class="btn btn-primary" type="submit">Specify</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import ObjectData, ServiceObject, ServiceType, ObjectType
+from .models import ObjectData, ServiceObject, ObjectType
 
 
 class ObjectDataForm(forms.ModelForm):
@@ -63,13 +63,6 @@ class OtherForm(forms.ModelForm):
         model = ServiceObject
         fields = ('total_service_building_value', )
         labels = {'total_service_building_value': 'Całkowita wartość budynku',}
-
-class ServiceTypeForm(forms.ModelForm):
-
-    class Meta:
-        model = ServiceType
-        fields = ('service_type',)
-        labels = {'service_type': 'Typ serwisu', }
 
 
 class PrivateObjectForm(forms.ModelForm):
