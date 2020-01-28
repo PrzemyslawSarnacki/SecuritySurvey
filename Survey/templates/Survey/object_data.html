@@ -4,6 +4,25 @@
 {% block content %}
 
 <form method="POST" action="">
+          
+        <section class="section testimonial bg-gray">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                      <div class="section-title">
+                        <br><h1 style="font-family: 'Times New Roman', Times, serif;">Prosimy o podanie wszystkich danych obiektu</h1>
+                        <br>
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <br><button type="submit" class="btn btn-dark btn-block">Wyicz stopień zabezpieczenia</button>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<!--<form method="POST" action="">
         <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
                 <div class='container'>
                     <div class='row'>
@@ -17,5 +36,5 @@
                 </div>
         </div>
 </div>
-</form>
+</form>-->
 {% endblock %}

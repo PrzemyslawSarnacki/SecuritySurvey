@@ -1,12 +1,59 @@
 {% extends 'Survey/base.html' %}
 
 {% block content %}
+{% load static %}
+
 <form method="POST" action="">
-    <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
-        <div class='container'>
-            <div class='row'>
-                <div class='text-center col-sm-12'>
-                    <p>Oto wyniki:</p>
+    <section class="section testimonial bg-gray">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                    <div class="section-title">
+                    <h1>Oto wyniki:</h1>
+                    <div id="section1" class="section about-2 position-relative">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                              <div class="about-item pr-3 mb-5 mb-lg-0">
+                        <h1>{{ security_degree.degree_name }}</h1>
+                        <p>{{ security_degree.description }}</p>
+                        {% csrf_token %}
+
+                    </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-item-img">
+                          <img src="{% static 'Survey/images/about/home-8.jpg' %}" alt="" class="img-fluid">
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <h1>{{ object_data.district}}</h1>
+                    {% for crime in object_data.district.crimes.all %}
+                    <div id="section1" class="section about-2 position-relative">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                              <div class="about-item pr-3 mb-5 mb-lg-0">
+                                <h2 class="mt-3 mb-4 position-relative content-title">{{ crime.crime_name }}</h2>
+                                  <p class="mb-2">{{ crime.description }}</p>
+                              
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                              <div class="about-item-img">
+                                {% if crime.photo %}
+                                <img src="{{ crime.photo.url}}" height="75" width="75" >
+                            {% endif %}                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <hr class="mt-0 mb-2">
+                    {% endfor %}
+
                     <p>Dziękujemy za skorzystanie z aplikacji</p>
                     {% csrf_token %}
                     <button type="submit" class="btn btn-dark btn-block">Dziękujemy</button>

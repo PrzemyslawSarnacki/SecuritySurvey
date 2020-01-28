@@ -6,7 +6,7 @@
 
 <form method="POST" action="">
           
-            <section class="page-title bg-1">
+            <div id="section5"  class="page-title bg-1">
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
@@ -14,25 +14,24 @@
                       <span class="text-white">Witamy w aplikacji</span>
                       <h1 class="text-capitalize mb-4 text-lg">POZNAJ SWOJE RYZYKO</h1>
                       <ul class="list-inline">
-                        <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+                        <!--<li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
                         <li class="list-inline-item"><span class="text-white">/</span></li>
-                        <li class="list-inline-item"><a href="#" class="text-white-50">About Us</a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white-50">About Us</a></li>-->
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </section>
+            </div section>
 
 
-            <section class="section about-2 position-relative">
+            <div id="section1" class="section about-2 position-relative">
               <div class="container">
                 <div class="row">
                   <div class="col-lg-6 col-md-6">
                     <div class="about-item pr-3 mb-5 mb-lg-0">
-                      <span class="h6 text-color">Opis</span>
-                      <h2 class="mt-3 mb-4 position-relative content-title">Aplikacja Poznaj Ryzyko</h2>
-                      <p class="mb-5">Dokładny opis jakie zadanie ma spełniać aplikacja</p>
+                      <h2 class="mt-3 mb-4 position-relative content-title">Aplikacja "Poznaj swoje ryzyko"</h2>
+                        <p class="mb-5">Ma za zadanie wspomóc projektanta Systemów Sygnalizacji Włamania i Napadu w doborze stopnia zabezpieczenia jaki powinien zastosować w projektowanym przez niego obiekcie</p>
             
                       {% csrf_token %}
                       <button type="submit" class="btn btn-main btn-round-full">Zaczynajmy</button>
@@ -45,20 +44,65 @@
                   </div>
                 </div>
               </div>
-            </section>
-            <section class="about-info section pt-0">
-              <section class="section testimonial bg-gray">
+            </div>
+            <div id="section2" class="about-info section pt-0">
+              <div class="section testimonial bg-gray">
                 <div class="container">
                   <div class="row justify-content-center">
                     <div class="col-lg-7 text-center">
                       <div class="section-title">
                         <span class="h6 text-color">Poziomy</span>
-                        <h2 class="mt-3 content-title">Jakie mamy poziomy zabezpieczeń stosowanych w obiektach</h2>
+                        <h2 class="mt-3 content-title">Jakie mamy poziomy zabezpieczeń stosowanych w obiektach</h2><br/>
+                        <h3 style="font-family: 'Times New Roman', Times, serif;">To bardzo proste ponieważ wyróżniamy następujące stopnie zabezpieczeń:</h4><br/>
+                        <p style="font-family: 'Times New Roman', Times, serif;"><b>Stopień 1:     </b> Ryzyko małe (zakłada się, że intruz ma minimalną wiedzę na temat systemu alarmowego i posiada łatwo dostępne narzędzia w ograniczonym wyborze),
+                          <br/><br/>
+                          <b>Stopień 2:     </b> Ryzyko małe do średniego (zakłada się, że intruz ma minimalną wiedzę na temat systemu alarmowego i posiada ogólno dostępne narzędzia i przenośne urządzenia, np. multimetr),
+                          <br/><br/>
+                          <b>Stopień 3:     </b> Ryzyko średnie do wysokiego (zakłada się, że intruz zna biegle system alarmowy i posiada złożony zestaw zaawansowanych narzędzi i przenośnego sprzętu elektronicznego),
+                          <br/><br/>
+                          <b>Stopień 4:     </b> Ryzyko wysokie (ma zastosowanie, gdy bezpieczeństwo ma priorytet nad wszystkimi innymi czynnikami. Zakłada się, że intruz posiada zdolności bądź środki by szczegółowo zaplanować włamanie i posiada zestaw dowolnego sprzętu, łącznie ze środkami do zastąpienia kluczowych elementów elektronicznego systemu alarmowego).</p>
+
                       </div>
                     </div>
                   </div>
                 </div>
-                </section>
+                </div>
+                <div id="section3" class="section about-2 position-relative">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6">
+                        <div class="about-item pr-3 mb-5 mb-lg-0">
+                          <span class="h6 text-color">Infrastruktura krytyczna</span>
+                            
+                          <h2 class="mt-3 content-title">SYSTEMY INFRASTRUKTURY KRYTYCZNEJ</h2><br/>
+                          <h3 style="font-family: 'Times New Roman', Times, serif;">Infrastruktura krytyczna obejmuje systemy:</h3><br/>
+                            <p style="font-family: 'Times New Roman', Times, serif;"><b>></b> Zaopatrzenia w energię, surowce energetyczne i paliwa,<br/>
+                            <b>></b> Łączności,<br/>
+                            <b>></b> Sieci teleinformatycznych,<br/>
+                            <b>></b> Finansowe,<br/>
+                            <b>></b> Zaopatrzenia w żywność,<br/>
+                            <b>></b> Zaopatrzenia w wodę,<br/>
+                            <b>></b> Ochrony zdrowia,<br/>
+                            <b>></b> Transportowe,<br/>
+                            <b>></b> Ratownicze,<br/>
+                            <b>></b> Zapewniające ciągłość działania administracji publicznej,<br/>
+                            <b>></b> Produkcji, składowania, przechowywania i stosowania substancji chemicznych i promieniotwórczych, w tym rurociągi substancji niebezpiecznych.</p><br/><br/>
+                            <h3 style="font-family: 'Times New Roman', Times, serif;">Infrastruktura krytyczna pełni kluczową rolę w funkcjonowaniu państwa i życiu jego obywateli. W wyniku zdarzeń spowodowanych siłami natury lub będących konsekwencją działań człowieka, infrastruktura krytyczna może być zniszczona, uszkodzona, a jej działanie może ulec zakłóceniu, przez co zagrożone może być życie i mienie obywateli.</h3><br/>
+                          
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="about-item-img">
+                          <img src="{% static 'Survey/images/about/home-8.jpg' %}" alt="" class="img-fluid">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
               
 </form>
 {% endblock %}

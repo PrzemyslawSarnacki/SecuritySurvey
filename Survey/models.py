@@ -1,12 +1,34 @@
 from django.db import models
 
+# class BuildingClassification(models.Model):
+#     classification_name = models.CharField(max_length=200)
+#     description = models.CharField(max_length=200)
+    
+
+class SecurityDegree(models.Model):
+    degree_name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"Twój budynek posiada {self.degree_name} zabezpieczenia"
+
+class Crimes(models.Model):
+    crime_name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to = 'media/', max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.description}"
+
+class DistrictVisually(models.Model):
+    district_name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    crimes = models.ManyToManyField(Crimes)
+
+    def __str__(self):
+        return f"Twoja dzielnica to {self.district_name}"
+
 class ObjectData(models.Model):
-    SIZES = (
-        ('1','Parterowy'),
-        ('2','Niski'),
-        ('3','Średnio wysoki'),
-        ('4','Wysokościowy'),
-        )
     DISTRICTS = (
         ('1','Bemowo'),
         ('2','Białołęka'),
@@ -26,37 +48,10 @@ class ObjectData(models.Model):
         ('16','Wola'),
         ('17','Żoliborz'),
         )
-    TRAFFIC_DAY = (
-        ('1','0-5 aut/min'),
-        ('2','5-10 aut/min'),
-        ('3','10-50 aut/min'),
-        ('4','50-100 aut/min'),
-        ('5','100 < aut/min'),
-        )
-    TRAFFIC_NIGHT = (
-        ('1','0-1 aut/min'),
-        ('2','1-5 aut/min'),
-        ('3','5-10 aut/min'),
-        ('4','10-50 aut/min'),
-        ('5','50 < aut/min'),
-        )
-    DISTANCE_FROM_THE_STREET = (
-        ('1','<5 m'),
-        ('2','5-10 m'),
-        ('3','10 < m'),
-        )
-    FENCE = (
-        ('1','Brak'),
-        ('2','Niski płotek'),
-        ('3','Płot o wysokości około 1,5 m'),
-        ('4','Wysoki płot'),
-        ('5','Płot 2-metrowy wraz z drutem kolczastym 0,5-metrowym'),
-        )
-    LANDFORM = (
-        ('1','W zagłębieniu terenu do około 5m'),
-        ('2','Równy teren'),
-        ('3','Obok rzeki'),
-        ('4','Na wzniesieniu terenu'),
+    STREET_TYPE = (
+        ('0','Mała ulica, wioska'),
+        ('1','Ulica średniej wielkości lub mało ruchliwe przedmieścia miasta'),
+        ('2','Ulica lub ciąg komunikacyjny o dużym natężeniu ruchu'),
         )
     NEIGHBORING_BUILDINGS = (
         ('1','Brak lub daleko (ponad 100 m)'),
@@ -65,46 +60,58 @@ class ObjectData(models.Model):
         ('4','Budynki usługowe'),
         ('5','Obiekty sportowe lub rozrywkowe'),
         )
-    object_size = models.CharField(max_length=255, choices=SIZES)
-    district = models.CharField(max_length=255, choices=DISTRICTS)
-    traffic_day = models.CharField(max_length=255, choices=TRAFFIC_DAY)
-    traffic_night = models.CharField(max_length=255, choices=TRAFFIC_NIGHT)
-    distance_from_the_street = models.CharField(max_length=255, choices=DISTANCE_FROM_THE_STREET)
+    district = models.ForeignKey(DistrictVisually, on_delete=models.CASCADE, default=1)
+    # district = models.CharField(max_length=255, choices=DISTRICTS)
+    street_type = models.CharField(max_length=255, choices=STREET_TYPE)
     cctv = models.BooleanField(default=False)
     locals_night = models.BooleanField(default=False)
-    fence = models.CharField(max_length=255, choices=FENCE)
-    landform = models.CharField(max_length=255, choices=LANDFORM)
     neighboring_buildings = models.CharField(max_length=255, choices=NEIGHBORING_BUILDINGS)
+    flammable_materials = models.BooleanField(default=False)
 
 
 class ServiceObject(models.Model):
-    SAFE_SIZES = (
-        ('0','Mały sejf'),
-        ('1','Duży sejf'),
-        )
-    
+    OBJECT_PRIORITIES = (
+        ('0', 'Obiekt NIEZALICZANY do infrastruktury krytycznej'),
+        ('1', 'Obiekt ZALICZANY do infrastruktury krytycznej'),
+    )
+    VISITORS_PER_HOUR = (
+        ('0', 'kilka do kilkunastu osób'),
+        ('1', 'do 100 osób'),
+        ('2', 'od 100 do 300'),
+        ('3', 'powyżej 300'),
+    ) 
+    VALUES = (
+        ('0', 'Wartość do 500 tys.'),
+        ('1', 'Wartość  powyżej > 500 tys.'), 
+        ('2', 'Wartość powyżej > 1 000 tys.'), 
+        ('3', 'Wartość powyżej > 1 500 tys.'),
+    )
     # Trade
-    total_products_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
-    products_amount = models.IntegerField(null=True, blank=True)
-    # Banking
-    safe_size = models.CharField(max_length=255, choices=SAFE_SIZES, null=True, blank=True)
+    # total_products_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
+    # products_amount = models.IntegerField(null=True, blank=True)
+    total_trading_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
     # Other
-    total_service_building_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
+    total_service_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
     # Private
-    total_private_building_value = models.DecimalField(decimal_places=2, max_digits=2, null=True, blank=True)
+    total_private_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
     # Public 
-    visitors_per_hour = models.IntegerField(null=True, blank=True)
+    visitors_per_hour = models.CharField(max_length=200, null=True, blank=True, choices=VISITORS_PER_HOUR)
+    object_priority = models.CharField(max_length=255, choices=OBJECT_PRIORITIES, null=True, blank=True)
 
     object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
 
+    # def __str__(self):
+    #     return f"{self.products_amount} of sth"
+
+    # def get_trading_building_price(self):
+    #     return self.total_products_value * self.products_amount * 1.25
 
 class ObjectType(models.Model): 
     OBJECT_TYPE = (
-             ('0','Obiekt usług handlowych'),
-             ('1','Obiekt usług bankowych'),
-             ('2','Obiekt usług innych'),
-             ('3','Obiekt prywatny'),
-             ('4','Obiekt publiczny'),
+             ('0','Obiekt służący do usług handlowych'),
+             ('1','Obiekt służący do innych usług'),
+             ('2','Obiekt prywatny'),
+             ('3','Obiekt publiczny'),
     )
     object_type = models.CharField(max_length=255, choices=OBJECT_TYPE, default='0')
     service_object = models.ForeignKey(ServiceObject, on_delete=models.CASCADE)
