@@ -28,6 +28,9 @@ def object_type(request):
     # object_data = ObjectData.objects.last()
     service_object = ServiceObject.objects.last()
     object_type = ObjectType.objects.last()
+    context['object_type'] = object_type
+
+
 
     if 'object_type' in request.POST.keys():
         object_type.object_type = request.POST['object_type']

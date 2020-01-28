@@ -18,16 +18,26 @@
 
                   {% for field in object_type_form %}
                   <!-- <label for="{{ field.id_for_label }}">{{ field.label }}</label> -->
-                    {{ field|add_class:'form-control' }}
-                    {% endfor %}
+                  {{ field|add_class:'form-control' }}
+                  {% endfor %}
                 </div>
-                </div>
-              <br>
-                <div class="row justify-content-center">
-                  <div class="col-lg-7 text-center">
-                      <button class="btn btn-primary" type="submit">Wybierz</button>
-                  </div>
               </div>
+              <br>
+              <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                  <button class="btn btn-primary" type="submit">Wybierz</button>
+                </div>
+                
+                {% if object_type.object_type == '0' %}
+                <p>Opis obiektu handlowego Sth Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam illo est, atque voluptates facere sed temporibus obcaecati aliquid vitae provident officiis numquam fugit porro inventore illum nisi earum. Vero, assumenda?</p>
+                {% elif object_type.object_type == '1' %}
+                <p>Opis obiektu usług innych Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim ea id necessitatibus dolor. Corrupti, quaerat quasi doloremque cupiditate ullam numquam aspernatur nihil accusamus debitis minima vero modi repellendus perferendis fugiat.</p>
+                {% elif object_type.object_type == '2' %}
+                <p>Opis obiektu prywatnego Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores cumque assumenda, animi odit sequi repudiandae iure at optio distinctio perspiciatis fugiat ex deserunt nostrum amet provident totam sint quae qui?</p>
+                {% elif object_type.object_type == '3' %}
+                <p>Opis obiektu publicznego Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, iusto quod obcaecati quasi, quis vero culpa animi in repellendus dicta temporibus! Illum quia amet a maxime sequi porro incidunt at!</p>
+                {% endif %}
+                </div>
             </form>
           </div>
         </div>
