@@ -66,7 +66,8 @@ def object_type(request):
             if request.POST:
                 service_object_form.save()
                 return redirect('object_data')
-        service_object_form.save()
+        if service_object_form.is_valid():
+            service_object_form.save()
         
     context['service_object_form'] = service_object_form
     context['object_type_form'] = ObjectTypeForm(request.POST or None)
@@ -82,22 +83,22 @@ def results(request):
     if object_type.object_type == '0': 
         if object_data.flammable_materials == True:
             if service_object.total_trading_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='II Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='III Stopień')
             elif service_object.total_trading_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='III Stopień')
             elif service_object.total_trading_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='III Stopień')
             elif service_object.total_trading_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='IV Stopień')
         elif object_data.flammable_materials == False:
             if service_object.total_trading_building_value == '0':
                 context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
             elif service_object.total_trading_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='II Stopień')
             elif service_object.total_trading_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='III Stopień')
             elif service_object.total_trading_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
+                context['security_degree'] = SecurityDegree.objects.get(degree_name='IV Stopień')
     # Other
     elif object_type.object_type == '1':
         if object_data.flammable_materials == True:
@@ -121,7 +122,7 @@ def results(request):
 
     # Private
     elif object_type.object_type == '2':
-        if object_data.street_type == '0':
+        if object_data.street_type == '0' and object_data.locals_night == False:
             if service_object.total_private_building_value == '0':
                 # 1stopien
                 context['security_degree'] = SecurityDegree.objects.get(degree_name='I Stopień')
@@ -134,7 +135,7 @@ def results(request):
             elif service_object.total_private_building_value == '3':
                 context['security_degree'] = SecurityDegree.objects.get(degree_name='IV Stopień')
                 # 4
-        elif object_data.street_type == '2':
+        elif object_data.street_type == '2' and object_data.locals_night == False:
             if service_object.total_private_building_value == '0':
                 context['security_degree'] = SecurityDegree.objects.get(degree_name='II Stopień')
             elif service_object.total_private_building_value == '1':

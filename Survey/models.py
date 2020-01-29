@@ -1,9 +1,5 @@
 from django.db import models
 
-# class BuildingClassification(models.Model):
-#     classification_name = models.CharField(max_length=200)
-#     description = models.CharField(max_length=200)
-    
 
 class SecurityDegree(models.Model):
     degree_name = models.CharField(max_length=200)
@@ -87,24 +83,17 @@ class ServiceObject(models.Model):
         ('3', 'Wartość powyżej > 1 500 tys.'),
     )
     # Trade
-    # total_products_value = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
-    # products_amount = models.IntegerField(null=True, blank=True)
-    total_trading_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
+    total_trading_building_value = models.CharField(max_length=200, choices=VALUES)
     # Other
-    total_service_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
+    total_service_building_value = models.CharField(max_length=200, choices=VALUES)
     # Private
-    total_private_building_value = models.CharField(max_length=200, null=True, blank=True, choices=VALUES)
+    total_private_building_value = models.CharField(max_length=200, choices=VALUES)
     # Public 
-    visitors_per_hour = models.CharField(max_length=200, null=True, blank=True, choices=VISITORS_PER_HOUR)
-    object_priority = models.CharField(max_length=255, choices=OBJECT_PRIORITIES, null=True, blank=True)
+    visitors_per_hour = models.CharField(max_length=200, choices=VISITORS_PER_HOUR)
+    object_priority = models.CharField(max_length=255, choices=OBJECT_PRIORITIES)
 
     object_data = models.ForeignKey(ObjectData, on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return f"{self.products_amount} of sth"
-
-    # def get_trading_building_price(self):
-    #     return self.total_products_value * self.products_amount * 1.25
 
 class ObjectType(models.Model): 
     OBJECT_TYPE = (

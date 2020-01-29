@@ -25,11 +25,6 @@ class ObjectDataForm(forms.ModelForm):
         }
 
 
-# class DistrictForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Dis
-#         fields = ('district_name', 'description', 'crimes')
 
 class ObjectTypeForm(forms.ModelForm):
 

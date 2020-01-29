@@ -14,27 +14,11 @@
                         <br>
                         {% csrf_token %}
                         {{form|crispy}}
-                        <br><button type="submit" class="btn btn-dark btn-block">Wyicz stopień zabezpieczenia</button>
+                        <br><button type="submit" class="btn btn-dark btn-block">Wylicz stopień zabezpieczenia</button>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-<!--<form method="POST" action="">
-        <div id="section1" class="container-fluid bg-info" style="padding-top:100px;padding-bottom:100px">
-                <div class='container'>
-                    <div class='row'>
-                        <div class='text-center col-sm-12'>
-                                <br><h1 style="font-family: 'Times New Roman', Times, serif;">Prosimy o podanie wszystkich danych obiektu</h1>
-                                <br>
-                                {% csrf_token %}
-                                {{form|crispy}}
-                                <br><button type="submit" class="btn btn-dark btn-block">Przejdź do następnego etapu</button>
-                        </div>
-                </div>
-        </div>
-</div>
-</form>-->
 {% endblock %}

@@ -17,6 +17,10 @@
                               <div class="about-item pr-3 mb-5 mb-lg-0">
                         <h1>{{ security_degree.degree_name }}</h1>
                         <p>{{ security_degree.description }}</p>
+                        <p>Popraw swoje bezpieczeństwo przez poniższe akcje:</p>
+                        {% if not object_data.cctv %}
+                        <p>Zainstaluj monitoring wizyjny</p>
+                        {% endif %}
                         {% csrf_token %}
 
                     </div>
