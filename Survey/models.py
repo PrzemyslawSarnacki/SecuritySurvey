@@ -3,7 +3,7 @@ from django.db import models
 
 class SecurityDegree(models.Model):
     degree_name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=2000)
 
     def __str__(self):
         return f"Twój budynek posiada {self.degree_name} zabezpieczenia"
@@ -12,6 +12,7 @@ class Crimes(models.Model):
     crime_name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     photo = models.ImageField(upload_to = 'media/', max_length=255, null=True, blank=True)
+    chart = models.ImageField(upload_to = 'media/', max_length=255, null=True, blank=True, default='media/wypadki_srednio.jpg')
 
     def __str__(self):
         return f"{self.description}"
@@ -97,8 +98,8 @@ class ServiceObject(models.Model):
 
 class ObjectType(models.Model): 
     OBJECT_TYPE = (
-             ('0','Obiekt służący do usług handlowych'),
-             ('1','Obiekt służący do innych usług'),
+             ('0','Obiekt handlowy'),
+             ('1','Obiekt usługowy - prywatny'),
              ('2','Obiekt prywatny'),
              ('3','Obiekt publiczny'),
     )
