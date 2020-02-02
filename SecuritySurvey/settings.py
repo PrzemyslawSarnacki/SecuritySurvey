@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*', 
 'security-survey.azurewebsites.net',
 ]
-
+ 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
