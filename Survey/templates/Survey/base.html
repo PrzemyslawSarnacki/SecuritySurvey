@@ -1,13 +1,14 @@
 {% load static %}
 <!doctype html>
 <html lang="pl">
-    <head>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
-        
-        <meta name="author" content="themefisher.com">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
+
+    <meta name="author" content="themefisher.com">
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="{% static 'Survey/plugins/bootstrap/css/bootstrap.min.css' %}">
     <!-- Icon Font Css -->
@@ -17,111 +18,136 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="{% static 'Survey/plugins/slick-carousel/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'Survey/plugins/slick-carousel/slick/slick-theme.css' %}">
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="{% static 'Survey/css/style.css' %}">
-  <title>Poznaj swoje ryzyko</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{% static 'Survey/css/style.css' %}">
+    <title>Poznaj swoje ryzyko</title>
 
 
-    </head>
-    
-    <body>
+</head>
+
+<body>
 
 
-        <header class="navigation">
-            <div class="header-top ">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-lg-2 col-md-4">
-                            <div class="header-top-socials text-center text-lg-left text-md-left">
-                                <a href="https://www.facebook.com/wojtekjamrozek?ref=bookmarks" target="_blank"><i class="ti-facebook"></i></a>
-                                <a href="https://www.instagram.com/wojteg_26/?hl=pl" target="_blank"><i class="ti-instagram"></i></a>
-                            </div>
+    <header class="navigation">
+        <div class="header-top ">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-2 col-md-4">
+                        <div class="header-top-socials text-center text-lg-left text-md-left">
+                            <a href="https://www.facebook.com/wojtekjamrozek?ref=bookmarks" target="_blank"><i
+                                    class="ti-facebook"></i></a>
+                            <a href="https://www.instagram.com/wojteg_26/?hl=pl" target="_blank"><i
+                                    class="ti-instagram"></i></a>
                         </div>
-                        <div class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
-                            <div class="header-top-info">
-                                <a href="tel:799 308 374">Zadzwoń do mnie : <span>799 308 374</span></a>
-                                <a href="mailto:wojtek.jamrozek@gmail.com" ><i class="fa fa-envelope mr-2"></i><span>wojtek.jamrozek@gmail.com</span></a>
-                            </div>
+                    </div>
+                    <div class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
+                        <div class="header-top-info">
+                            <a href="tel:799 308 374">Zadzwoń do mnie : <span>799 308 374</span></a>
+                            <a href="mailto:wojtek.jamrozek@gmail.com"><i
+                                    class="fa fa-envelope mr-2"></i><span>wojtek.jamrozek@gmail.com</span></a>
                         </div>
                     </div>
                 </div>
             </div>
-        
+        </div>
+
         <nav class="navbar navbar-expand-lg  py-4" id="navbar">
-		<div class="container">
-		  <a class="navbar-brand" href="/">
-		  	Poznaj swoje <span>Ryzyko</span>
-		  </a>
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Poznaj swoje <span>Ryzyko</span>
+                </a>
 
-		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="fa fa-bars"></span>
-		  </button>
-	  
-		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item active">
-				<a class="nav-link" href="#section1">Home <span class="sr-only">(current)</span></a>
-			  </li>
-			  
-			   <li class="nav-item"><a class="nav-link" href="#section2">Poziomy zabezpieczeń</a></li>
-			   <li class="nav-item"><a class="nav-link" href="#section3">Infrastruktura krytyczna</a></li>
-			   
-			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-			  <a href="https://wel.wat.edu.pl/" class="btn btn-solid-border btn-round-full">WAT</a>
-			</form>
-		  </div>
-		</div>
-	</nav>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                </button>
+
+                <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+                    <ul id="navbar" class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#section1" data-section="1" id="s1">Home <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item" data-section="2"><a class="nav-link" href="#section2">Poziomy
+                                zabezpieczeń</a></li>
+                        <li class="nav-item" data-section="3"><a class="nav-link" href="#section3">Infrastruktura
+                                krytyczna</a></li>
+                    </ul>
+                    <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                        <a href="https://wel.wat.edu.pl/" class="btn btn-solid-border btn-round-full">WAT</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
 
-                  <div class="mt-0 pt-0">
-                          {% if messages %}
-                              {% for message in messages %}
-                              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                                  {{ message }}
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                  </button>
-                  
-                              </div>
-                              {% endfor %}
-                          {% endif %}
-                      </div>
+        <div class="mt-0 pt-0">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        </div>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+
+    <footer class="footer section">
+        <div class="container">
+
+        </div>
+
+        <div class="footer-btm pt-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright">
+                        &copy; Copyright Reserved to <span class="text-color">Megakit.</span> by <a
+                            href="https://themefisher.com/" target="_blank">Themefisher</a>
                     </div>
-                </header>
-                    {% block content %}
-                    
-                    {% endblock %}
-        
-                    <footer class="footer section">
-                        <div class="container">
-                            
-                            </div>
-                            
-                            <div class="footer-btm pt-4">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="copyright">
-                                            &copy; Copyright Reserved to <span class="text-color">Megakit.</span> by <a href="https://themefisher.com/" target="_blank">Themefisher</a>
-                                        </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                    
-                    <!-- 
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 
     Essential Scripts
     =====================================-->
 
-    
+
     <!-- Main jQuery -->
     <script src="{% static 'Survey/plugins/jquery/jquery.js' %}"></script>
     <script src="{% static 'Survey/js/contact.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+<!-- Load ScrollTo -->
+<script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2-min.js"></script>
+
+<!-- Load LocalScroll -->
+<script src="http://flesler-plugins.googlecode.com/files/jquery.localscroll-1.2.7-min.js"></script>
+
+    <script>
+        $('a[href*=#]').click(function () {
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 500);
+            return false;
+        });
+    </script>
     <!-- Bootstrap 4.3.1 -->
     <script src="{% static 'Survey/plugins/bootstrap/js/popper.js' %}"></script>
     <script src="{% static 'Survey/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
-   <!--  Magnific Popup-->
+    <!--  Magnific Popup-->
     <script src="{% static 'Survey/plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
     <!-- Slick Slider -->
     <script src="{% static 'Survey/plugins/slick-carousel/slick/slick.min.js' %}"></script>
@@ -129,7 +155,8 @@
     <script src="{% static 'Survey/plugins/counterup/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'Survey/plugins/counterup/jquery.counterup.min.js' %}"></script>
 
-    
+
     <script src="{% static 'Survey/js/script.js' %}"></script>
 </body>
+
 </html>

@@ -98,6 +98,23 @@
 	      time: 1000
 	  });
 
+	var cont = $("#section1");
+	var coffset = cont.offset();
+	  
+	$("#navbar li").on("click", function () {
 	
-
+	var container = $("#section" + $(this).attr("data-section"));
+	var offset = container.offset();
+	var stop = offset.top - coffset.top + cont[0].scrollTop;
+	
+	cont.animate({scrollTop: stop}, 500);
+	
+	}); 
+	
+	
 })(jQuery);
+
+$('a[href*=\\#]').on('click', function(event){     
+	event.preventDefault();
+	$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+});
