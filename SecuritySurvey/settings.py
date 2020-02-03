@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', 
 'security-survey.azurewebsites.net',
+'http://securitysurvey.pythonanywhere.com/',
 ]
 
 STATICFILES_DIRS = (
