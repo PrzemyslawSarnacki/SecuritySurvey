@@ -38,6 +38,7 @@ MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
+    'Survey.apps.SurveyConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "crispy_forms",
     'widget_tweaks',
-    'Survey.apps.SurveyConfig',
     'register.apps.RegisterConfig',
 ]
 
@@ -86,15 +86,15 @@ WSGI_APPLICATION = 'SecuritySurvey.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'OPTIONS': {
+            'timeout': 20,  # in seconds
+            # see also
+            # https://docs.python.org/3.7/library/sqlite3.html#sqlite3.connect
+        }
     }
 }
-
 
 
 # Password validation
