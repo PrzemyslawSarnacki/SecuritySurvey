@@ -119,32 +119,36 @@
             </div>
         </div>
     </footer>
-
+    
     <!-- 
-    Essential Scripts
-    =====================================-->
-
-
-    <!-- Main jQuery -->
+        Essential Scripts
+        =====================================-->
+        
+        <!-- Main jQuery -->
     <script src="{% static 'Survey/plugins/jquery/jquery.js' %}"></script>
     <script src="{% static 'Survey/js/contact.js' %}"></script>
+    <!-- Bootstrap 4.3.1 -->
+    <script src="{% static 'Survey/plugins/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'Survey/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
 <!-- Load ScrollTo -->
 <script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2-min.js"></script>
 
-    <script>
-        $('a[href*=#]').click(function () {
-            $('html, body').animate({
-                scrollTop: $($.attr(this, 'href')).offset().top
-            }, 500);
-            return false;
-        });
-    </script>
-    <!-- Bootstrap 4.3.1 -->
-    <script src="{% static 'Survey/plugins/bootstrap/js/popper.js' %}"></script>
-    <script src="{% static 'Survey/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
-    <!--  Magnific Popup-->
+<!-- Load LocalScroll -->
+<script src="http://flesler-plugins.googlecode.com/files/jquery.localscroll-1.2.7-min.js"></script>
+
+<script>
+    $('a[href*=#]').click(function () {
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 500);
+        return false;
+    });
+</script>
+
+   <!--  Magnific Popup-->
     <script src="{% static 'Survey/plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
     <!-- Slick Slider -->
     <script src="{% static 'Survey/plugins/slick-carousel/slick/slick.min.js' %}"></script>
@@ -152,8 +156,10 @@
     <script src="{% static 'Survey/plugins/counterup/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'Survey/plugins/counterup/jquery.counterup.min.js' %}"></script>
 
-
+    <!-- Google Map -->
+    <script src="{% static 'Survey/plugins/google-map/map.js' %}"></script>
     <script src="{% static 'Survey/js/script.js' %}"></script>
+    
 </body>
 
 </html>
