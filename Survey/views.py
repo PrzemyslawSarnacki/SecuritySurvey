@@ -228,4 +228,3 @@ def results(request):
     if request.method == 'POST':
         return redirect('home')
     return render(request, 'Survey/results.html', context)
-
