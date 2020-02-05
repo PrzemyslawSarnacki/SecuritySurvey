@@ -1,4 +1,4 @@
-# dotfiles
+# Security Survey
 ## Screenshots
 ![](./screenshot.png)
 ![](./screenshot_mobile.png)
@@ -9,4 +9,4 @@ Simple Django Proggressive Web App which helps user with choice of security syst
 ## Preview 
 Preview of this app is possible on PythonAnywhere platform:
 http://securitysurvey.pythonanywhere.com/
-But access is restricted for now (login is required for now).
+But access is restricted for now (login is required).
