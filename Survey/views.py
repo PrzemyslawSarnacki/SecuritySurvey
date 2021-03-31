@@ -30,53 +30,30 @@ def object_data(request):
 def object_type(request):
     context = {}
 
-    # object_data = ObjectData.objects.last()
     service_object = ServiceObject.objects.last()
     object_type = ObjectType.objects.last()
     context['object_type'] = object_type
 
+    forms_dict = {
+        "0": TradeForm,
+        "1": OtherForm,
+        "2": PrivateObjectForm,
+        "3": PublicObjectForm,
+    }
+
     if 'object_type' in request.POST.keys():
         object_type.object_type = request.POST['object_type']
         object_type.save()
-        if request.POST['object_type'] == '0':
-            service_object_form = TradeForm(
-                request.POST, instance=service_object)
-            # service_object_form.save()
-        elif request.POST['object_type'] == '1':
-            service_object_form = OtherForm(
-                request.POST, instance=service_object)
-        elif request.POST['object_type'] == '2':
-            service_object_form = PrivateObjectForm(
-                request.POST, instance=service_object)
-        elif request.POST['object_type'] == '3':
-            service_object_form = PublicObjectForm(
-                request.POST, instance=service_object)
+        service_object_form = forms_dict[request.POST['object_type']](
+            request.POST, instance=service_object)
     else:
         recipe = object_type.object_type
-        if recipe == '0':
-            service_object_form = TradeForm(
-                request.POST, instance=service_object)
-            if request.POST:
-                service_object_form.save()
-                return redirect('object_data')
-        elif recipe == '1':
-            service_object_form = OtherForm(
-                request.POST, instance=service_object)
-            if request.POST:
-                service_object_form.save()
-                return redirect('object_data')
-        elif recipe == '2':
-            service_object_form = PrivateObjectForm(
-                request.POST, instance=service_object)
-            if request.POST:
-                service_object_form.save()
-                return redirect('object_data')
-        elif recipe == '3':
-            service_object_form = PublicObjectForm(
-                request.POST, instance=service_object)
-            if request.POST:
-                service_object_form.save()
-                return redirect('object_data')
+
+        service_object_form = forms_dict[recipe](
+            request.POST, instance=service_object)
+        if request.POST:
+            service_object_form.save()
+            return redirect('object_data')
         if service_object_form.is_valid():
             service_object_form.save()
 
