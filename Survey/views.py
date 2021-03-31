@@ -48,7 +48,6 @@ def object_type(request):
             request.POST, instance=service_object)
     else:
         recipe = object_type.object_type
-
         service_object_form = forms_dict[recipe](
             request.POST, instance=service_object)
         if request.POST:
@@ -69,139 +68,91 @@ def results(request):
     object_type = ObjectType.objects.last()
     object_data = ObjectData.objects.last()
     context['object_data'] = object_data
-    # Trading
-    if object_type.object_type == '0':
-        if object_data.flammable_materials == True:
-            if service_object.total_trading_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie handlowym')
-            elif service_object.total_trading_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie handlowym')
-            elif service_object.total_trading_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie handlowym')
-            elif service_object.total_trading_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia w obiekcie handlowym')
-        elif object_data.flammable_materials == False:
-            if service_object.total_trading_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='I Stopień zabezpieczenia obiektu handlowego')
-            elif service_object.total_trading_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='II Stopień zabezpieczenia obiektu handlowego')
-            elif service_object.total_trading_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia obiektu handlowego')
-            elif service_object.total_trading_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia obiektu handlowego')
-    # Other
-    elif object_type.object_type == '1':
-        if object_data.flammable_materials == True:
-            if service_object.total_service_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie usługowym')
-            elif service_object.total_service_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie usługowym')
-            elif service_object.total_service_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie usługowym')
-            elif service_object.total_service_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia w obiekcie usługowym')
-        elif object_data.flammable_materials == False:
-            if service_object.total_service_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='I Stopień zabezpieczenia obiektu usługowego')
-            elif service_object.total_service_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='II Stopień zabezpieczenia obiektu usługowego')
-            elif service_object.total_service_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia obiektu usługowego')
-            elif service_object.total_service_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia obiektu usługowego')
-
-    # Private
-    elif object_type.object_type == '2':
-        if object_data.street_type == '0' and object_data.locals_night == False:
-            if service_object.total_private_building_value == '0':
-                # 1stopien
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='I Stopień zabezpieczenia obiektu prywatnego')
-            elif service_object.total_private_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='II Stopień zabezpieczenia obiektu prywatnego')
-                # 2
-            elif service_object.total_private_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia obiektu prywatnego')
-                # 3
-            elif service_object.total_private_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia obiektu prywatnego')
-                # 4
-        elif object_data.street_type == '2' and object_data.locals_night == False:
-            if service_object.total_private_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='II Stopień zabezpieczenia obiektu prywatnego')
-            elif service_object.total_private_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie prywatnym')
-            elif service_object.total_private_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia w obiekcie prywatnym')
-            elif service_object.total_private_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia obiektu')
-        elif object_data.street_type == '1' or object_data.locals_night == True:
-            if service_object.total_private_building_value == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie prywatnym')
-            elif service_object.total_private_building_value == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia obiektu')
-            elif service_object.total_private_building_value == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia')
-            elif service_object.total_private_building_value == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczeń')
-
-    # Public
-    elif object_type.object_type == '3':
-        if service_object.object_priority == '0':
-            if service_object.visitors_per_hour == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='I Stopień zabezpieczenia obiektu prywatnego')
-            elif service_object.visitors_per_hour == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='II Stopień zabezpieczenia obiektu prywatnego')
-            elif service_object.visitors_per_hour == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia obiektu prywatnego')
-            elif service_object.visitors_per_hour == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia obiektu prywatnego')
-
-        elif service_object.object_priority == '1':
-            if service_object.visitors_per_hour == '0':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień zabezpieczenia w obiekcie publicznym')
-            elif service_object.visitors_per_hour == '1':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='III Stopień w obiekcie publicznym')
-            elif service_object.visitors_per_hour == '2':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień zabezpieczenia w obiekcie publicznym')
-            elif service_object.visitors_per_hour == '3':
-                context['security_degree'] = SecurityDegree.objects.get(
-                    degree_name='IV Stopień w obiekcie publicznym')
-
+    degree = categorize_building(object_type, service_object) 
+    context['security_degree'] = SecurityDegree.objects.get(
+        degree_name=f'{degree} Stopień zabezpieczenia obiektu prywatnego')
     if request.method == 'POST':
         return redirect('home')
     return render(request, 'Survey/results.html', context)
+
+
+def categorize_building(object_type, service_object, object_data): 
+    degree = 'I'
+    # Trading
+    if object_type.object_type == '0':
+        degree = categorize_other(object_data.flammable_materials, service_object.total_trading_building_value)
+    # Other
+    elif object_type.object_type == '1':
+        degree = categorize_other(object_data.flammable_materials, service_object.total_service_building_value)
+    # Private
+    elif object_type.object_type == '2':
+        degree = categorize_private(service_object, object_data)
+    # Public
+    elif object_type.object_type == '3':
+        degree = categorize_public(service_object)
+    return degree
+
+
+def categorize_other(flammable_materials, building_value):
+    degree_dict = {
+            True: {
+                '0': 'III',
+                '1': 'III',
+                '2': 'III',
+                '3': 'IV',
+            },
+            False: {
+                '0': 'I',
+                '1': 'II',
+                '2': 'III',
+                '3': 'IV',
+            },
+    }
+    return degree_dict[flammable_materials][building_value]
+
+
+def categorize_public(service_object):
+    public_dict = {
+            '0':{
+                    '0': 'I',
+                    '1': 'II',
+                    '2': 'III',
+                    '3': 'IV',
+                },
+            '1':{
+                    '0': 'III',
+                    '1': 'III',
+                    '2': 'IV',
+                    '3': 'IV',
+                },
+            }
+    return public_dict[service_object.object_priority][service_object.visitors_per_hour]
+
+
+def categorize_private(service_object, object_data):
+    degree = "I"
+    if object_data.street_type == '0' and object_data.locals_night == False:
+        private_dict = {
+                '0': 'I',
+                '1': 'II',
+                '2': 'III',
+                '3': 'IV',
+        }
+        degree = private_dict[service_object.total_private_building_value]
+    elif object_data.street_type == '2' and object_data.locals_night == False:
+        private_dict = {
+                '0': 'II',
+                '1': 'III',
+                '2': 'IV',
+                '3': 'IV',
+        }
+        degree = private_dict[service_object.total_private_building_value]
+    elif object_data.street_type == '1' or object_data.locals_night == True:
+        private_dict = {
+                '0': 'III',
+                '1': 'III',
+                '2': 'IV',
+                '3': 'IV',
+        }
+        degree = private_dict[service_object.total_private_building_value]
+    return degree
